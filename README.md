@@ -1,7 +1,6 @@
 # kube-cluster-ansible
 
 #### Table of Contents
-=======================
 
 * [Overview](#overview)
 * [Requrements](#requrements)
@@ -32,7 +31,6 @@ credits:
 Ansible (tested on 2.1.2.0)
 
 ### Installation
-================
 
 Setup 1 vanilla machine with your chosen provider.
 
