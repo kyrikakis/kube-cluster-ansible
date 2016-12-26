@@ -44,7 +44,7 @@ Now you can provision your K8s cluster running on the project root:
 ### Verification
 
 * If you want to access k8s cluster securely copy the `/etc/kubernetes/kubelet.conf` file from master node to `~/.kube/config` 
-on your local machine (of course you have to install `kubectl` locally), then you can access your cluster with `kubectl proxy`
+on your local machine (of course you need to install `kubectl` locally), then you can access your cluster with `kubectl proxy`
 
 To check if everything has provisioned correctly, on your master node, invoke:
 

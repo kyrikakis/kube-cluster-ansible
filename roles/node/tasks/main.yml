@@ -1,0 +1,9 @@
+- name: Ensure node /etc/kubernetes is empty
+  shell: "rm -rf /etc/kubernetes/*"
+  when: inventory_hostname in groups['kubernetes-nodes']
+  tags: purge_kubernetes_config_dir_nodes
+
+- name: Register nodes with master
+  shell: "kubeadm join {{ contents }} {{ groups['kubernetes-master'][0] }}"
+  when: inventory_hostname in groups['kubernetes-nodes']
+  tags: register_nodes
