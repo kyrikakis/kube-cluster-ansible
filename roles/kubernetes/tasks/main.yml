@@ -1,0 +1,49 @@
+---
+- debug:
+    var: ansible_distribution
+
+- name: install system updates for centos systems
+  yum: name=* state=latest update_cache=yes
+  when: ansible_distribution == "CentOS"
+
+- name: install system updates for ubuntu systems
+  apt: upgrade=dist update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Kubernetes Repository Centos
+  copy:
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+    mode: 0644
+  when: ansible_distribution != "Ubuntu"
+  tags: add_kubernetes_repo
+
+- name: Install Kubernetes Repository Ubuntu
+  script: installK8sUbuntu.sh
+  args:
+    creates: /etc/apt/sources.list.d/kubernetes.list
+  when: ansible_distribution == "Ubuntu"
+  tags: add_kubernetes_repo
+
+- name: Install Kubernetes packages
+  action: "{{ ansible_pkg_mgr }}"
+  args:
+    name:
+      - kubelet
+      - kubeadm
+      - kubectl
+      - kubernetes-cni
+    state: latest
+  tags: install_kubernetes_packages
+
+- name: Enable kubelet
+  service:
+    name: kubelet
+    enabled: yes
+  tags: start_kubelet
+
+- name: Start kubelet
+  service:
+    name: kubelet
+    state: started
+  tags: start_kubelet
