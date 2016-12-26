@@ -53,9 +53,7 @@ This will output all the nodes connected in the cluster:
 
 ```
 NAME                 STATUS    AGE
-centos-2gb-lon1-01   Ready     24m
-centos-2gb-lon1-02   Ready     24m
-centos-2gb-lon1-03   Ready     25m
+kube-node-1          Ready     24m
 ```
 
 To check the pod network is running correctly, invoke:
@@ -99,7 +97,15 @@ Grafana connected with influxdb for performance monitoring.
 
 [https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana](https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana)
 
-![dashboard](monitoring-grafana.png)
+![grafana](monitoring-grafana.png)
+
+#### Kibana Logging
+
+Kibana connected with elastic-search for log searching.
+
+[https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/kibana-logging](https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/kibana-logging)
+
+![kibana](kibana-logging.png)
 
 #### NOTES: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
