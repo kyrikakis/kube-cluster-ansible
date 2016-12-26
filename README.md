@@ -21,12 +21,9 @@ Ansible (tested on 2.1.2.0)
 
 ### Installation
 
-Setup 3 vanilla machines with your chosen provider.
+Setup 1 vanilla machine with your chosen provider.
 
-1x master
-2x nodes
-
-* Copy your public ssh key on your machine user's .ssh authorized_keys folder
+* Copy your public ssh key on your machine user's ~/.ssh authorized_keys folder
 
 * If you are on CentOS is required to disable SELinux by running `setenforce 0`  You have to do this until kubelet can handle SELinux better.
 
@@ -40,6 +37,8 @@ Setup 3 vanilla machines with your chosen provider.
 Now you can provision your K8s cluster running on the project root:
 
 `ansible-playbook playbooks/deploy-cluster.yml`
+
+*For testing the solution on a local Vagrant go [here](#notes).
 
 ### Verification
 
@@ -90,5 +89,16 @@ Congratulations!!! Now you can login with your credencials in kubernetes-dashboa
 
 ![dashboard](kubernetes-dash.png)
 
-### NOTE: 
-Not tested using nodes (minions) yet, except master as minion. (to be continued)
+#### NOTES: 
+* Not tested using nodes (minions) yet, except master as minion. (to be continued)
+* If you want to test it with vagrant just set in [inventory](./inventories/main.ini) `kubes_advertise_ip=172.28.128.159`, 
+as the vagrant's **private_network IP**`` the same for the host replacing `example.host`. Finally set `ansible_ssh_user=vagrant`
+Then start the virtaul box Vagrant machine and copy you public ssh key:
+```
+vagrant up
+ssh-copy-id vagrant@172.28.128.159
+```
+then run:
+```
+ansible-playbook playbooks/deploy-cluster.yml
+```
