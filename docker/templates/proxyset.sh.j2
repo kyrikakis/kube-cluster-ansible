@@ -1,0 +1,8 @@
+export http_proxy={{ http_proxy }}
+export https_proxy={{ https_proxy }}
+export no_proxy={{ inventory_hostname }},{{ no_proxy }}
+
+export KUBERNETES_HTTP_PROXY={{ http_proxy }}
+export KUBERNETES_HTTPS_PROXY={{ https_proxy }}
+export KUBERNETES_NO_PROXY={{ inventory_hostname }},{{ no_proxy }}
+

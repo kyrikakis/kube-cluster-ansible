@@ -1,0 +1,57 @@
+---
+- name: Add http-proxy settings file
+  template:
+    src: proxyset.sh.j2
+    dest: /etc/profile.d/proxyset.sh
+    mode: 0755
+  when: use_proxy == true
+
+- name: Add Docker repository Centos
+  copy:
+    src: docker.repo
+    dest: /etc/yum.repos.d/docker.repo
+    mode: 0644
+  when: ansible_distribution != "Ubuntu"
+  tags: add_docker_repo
+
+- name: Remove legacy docker package
+  action: "{{ ansible_pkg_mgr }}"
+  args:
+    name: docker
+    state: absent
+  tags: remove_legacy_docker
+
+- name: Install Docker on Centos
+  action: "{{ ansible_pkg_mgr }}"
+  args:
+    name: docker-engine
+    state: latest
+  when: ansible_distribution != "Ubuntu"
+  tags: install_docker
+
+- name: Install Docker on Ubuntu
+  action: "{{ ansible_pkg_mgr }}"
+  args:
+    name: docker.io
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+  tags: install_docker
+
+- name: Creates docker service directory
+  file: path=/etc/systemd/system/docker.service.d state=directory
+  when: use_proxy == true
+
+- name: Add docker proxy settings file
+  template: src=http-proxy.conf.j2 dest=/etc/systemd/system/docker.service.d/http-proxy.conf
+  when: use_proxy == true
+
+- name: daemon-reload
+  shell: "sudo systemctl daemon-reload"
+
+- name: start docker
+  service:
+    name: docker
+    state: restarted
+    enabled: yes
+  tags: start_docker
+

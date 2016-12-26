@@ -67,25 +67,28 @@ You should see:
 
 ```
 NAMESPACE     NAME                                       READY     STATUS    RESTARTS   AGE
-kube-system   dummy-2088944543-m5vvc                     1/1       Running   0          27min
-kube-system   elasticsearch-logging-v1-7xrw6             1/1       Running   0          27min
-kube-system   elasticsearch-logging-v1-f4hql             1/1       Running   0          27min
-kube-system   etcd-cluster.thema.io                      1/1       Running   0          27min
-kube-system   fluentd-es-v1.20-jf0k8                     1/1       Running   0          27min
-kube-system   heapster-2193675300-kwgpd                  1/1       Running   0          27min
-kube-system   kibana-logging-3953273462-9qg8f            1/1       Running   0          27min
-kube-system   kube-apiserver-cluster.thema.io            1/1       Running   1          27min
-kube-system   kube-controller-manager-cluster.thema.io   1/1       Running   0          27min
-kube-system   kube-discovery-1769846148-ctgz4            1/1       Running   0          27min
-kube-system   kube-dns-2924299975-ww6d5                  4/4       Running   0          27min
-kube-system   kube-proxy-twb20                           1/1       Running   0          27min
-kube-system   kube-scheduler-cluster.thema.io            1/1       Running   0          27min
-kube-system   kubernetes-dashboard-3095304083-lzr79      1/1       Running   0          27min
-kube-system   monitoring-grafana-838819444-7bjxb         1/1       Running   0          27min
-kube-system   monitoring-influxdb-1353739890-mhb88       1/1       Running   0          27min
-kube-system   weave-net-65xpt                            2/2       Running   0          27min
+kube-system   dummy-2088944543-m5vvc                     1/1       Running   0          27m
+kube-system   elasticsearch-logging-v1-7xrw6             1/1       Running   0          27m
+kube-system   elasticsearch-logging-v1-f4hql             1/1       Running   0          27m
+kube-system   etcd-cluster.thema.io                      1/1       Running   0          27m
+kube-system   fluentd-es-v1.20-jf0k8                     1/1       Running   0          27m
+kube-system   heapster-2193675300-kwgpd                  1/1       Running   0          27m
+kube-system   kibana-logging-3953273462-9qg8f            1/1       Running   0          27m
+kube-system   kube-apiserver-cluster.thema.io            1/1       Running   1          27m
+kube-system   kube-controller-manager-cluster.thema.io   1/1       Running   0          27m
+kube-system   kube-discovery-1769846148-ctgz4            1/1       Running   0          27m
+kube-system   kube-dns-2924299975-ww6d5                  4/4       Running   0          27m
+kube-system   kube-proxy-twb20                           1/1       Running   0          27m
+kube-system   kube-scheduler-cluster.thema.io            1/1       Running   0          27m
+kube-system   kubernetes-dashboard-3095304083-lzr79      1/1       Running   0          27m
+kube-system   monitoring-grafana-838819444-7bjxb         1/1       Running   0          27m
+kube-system   monitoring-influxdb-1353739890-mhb88       1/1       Running   0          27m
+kube-system   weave-net-65xpt                            2/2       Running   0          27m
 ```
 
 Congratulations!!! Now you can login with your credencials in kubernetes-dashboard: [https://master_hostname:6443/ui](https://master_hostname:6443/ui)
 
 ![dashboard](kubernetes-dash.png)
+
+### NOTE: 
+not tested using nodes yet. (to be continued)
