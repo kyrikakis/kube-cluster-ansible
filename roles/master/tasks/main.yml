@@ -1,0 +1,68 @@
+- name: Copy basic auth passwd file
+  copy: src=passwords.csv dest=/etc/kubernetes/
+
+- name: Start master node with kubes_advertise_ip
+  shell: "kubeadm init --api-advertise-addresses={{ kubes_advertise_ip }}"
+  register: kubeadm_init
+  when: (network_provider == "weave" or network_provider == "calico") and kubes_advertise_ip != "none"
+  tags: init_kubernetes_master
+
+- name: Start master node
+  shell: "kubeadm init"
+  register: kubeadm_init
+  when: (network_provider == "weave" or network_provider == "calico") and kubes_advertise_ip == "none"
+  tags: init_kubernetes_master
+
+- name: Start master node with flannel and kubes_advertise_ip
+  shell: "kubeadm init --api-advertise-addresses={{ kubes_advertise_ip }} --pod-network-cidr=10.244.0.0/16"
+  register: kubeadm_init
+  when: network_provider == "flannel" and kubes_advertise_ip != "none"
+  tags: init_kubernetes_master
+
+- name: Start master node with flannel
+  shell: "kubeadm init --pod-network-cidr=10.244.0.0/16"
+  register: kubeadm_init
+  when: network_provider == "flannel" and kubes_advertise_ip == "none"
+  tags: init_kubernetes_master
+
+- name: Taint master ode
+  shell: "kubectl taint nodes --all dedicated-"
+  when: inventory_hostname in groups['kubernetes-master']
+  tags: init_kubernetes_master
+
+- lineinfile:
+    dest: /etc/kubernetes/manifests/kube-apiserver.json
+    insertafter: '          "--allow-privileged",'
+    line: '          "--basic-auth-file=/etc/kubernetes/passwords.csv",'
+
+- pause:
+    seconds: 10
+
+- name: Install Weave overlay network
+  shell: "kubectl apply -f https://git.io/weave-kube --validate=false"
+  when: network_provider == "weave"
+  tags: install_weave_overlay_network
+
+- name: Install Calico overlay network
+  shell: "kubectl apply -f http://docs.projectcalico.org/v1.6/getting-started/kubernetes/installation/hosted/calico.yaml --validate=false"
+  when: network_provider == "calico"
+  tags: install_weave_overlay_network
+
+- name: Copy flannel yaml file
+  copy: src=kube-flannel.yml dest=./
+  when: network_provider == "flannel"
+
+- name: Install Flannel overlay network
+  shell: "kubectl apply -f kube-flannel.yml --validate=false"
+  when: network_provider == "flannel"
+  tags: install_flannel_overlay_network
+
+- name: Delete temp files
+  file:
+    state: absent
+    path: ./kube-flannel.yml
+  when: network_provider == "flannel"
+
+- name: Namespace creation
+  shell: "kubectl create namespace {{ kubes_namespace }}"
+

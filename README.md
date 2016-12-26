@@ -37,7 +37,7 @@ Setup 3 vanilla machines with your chosen provider.
 * If your want to alter the default settings e.g. adding a proxy or selecting your favorite network provider: [defaults](./inventories/group_vars/all.yml)
 
 
-Now you can provision your K8s cluster with:
+Now you can provision your K8s cluster running on the project root:
 
 `ansible-playbook playbooks/deploy-cluster.yml`
 
