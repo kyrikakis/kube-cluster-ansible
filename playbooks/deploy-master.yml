@@ -1,0 +1,8 @@
+---
+- name: Deploy master
+  hosts: kubernetes-master
+
+  roles:
+    - role: master
+    - role: dashboard
+    - role: elastic-fluentd-kibana
