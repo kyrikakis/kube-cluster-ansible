@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 # Environmental variables
-PROXY = "10.144.1.10"
-PROXY_PORT = "8080"
+PROXY = "<your_proxy>"
+PROXY_PORT = "<your_proxy_port>"
 
 # Checking required vagrant plugins
 required_plugins =%w( vagrant-proxyconf vagrant-vbguest )
