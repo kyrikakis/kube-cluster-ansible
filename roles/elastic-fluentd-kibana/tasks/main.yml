@@ -1,0 +1,18 @@
+- name: Creates elasstic data directory
+  file: path=/cluster_volume/elastic/data recurse=yes state=directory
+
+- name: Create temporary influxdb yaml dir
+  file: path=./elastic state=directory
+
+- name: Copy yaml files on folder
+  copy:
+    src: ./
+    dest: ./elastic/
+
+- name: Install elastic-fluent-kibana
+  shell: "kubectl create -f ./elastic/  --validate=false"
+
+- name: Delete temp files
+  file:
+    state: absent
+    path: ./elastic
