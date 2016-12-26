@@ -5,4 +5,5 @@
   roles:
     - role: master
     - role: dashboard
+    - role: heapster-influxdb-grafana
     - role: elastic-fluentd-kibana

@@ -91,4 +91,4 @@ Congratulations!!! Now you can login with your credencials in kubernetes-dashboa
 ![dashboard](kubernetes-dash.png)
 
 ### NOTE: 
-not tested using nodes yet. (to be continued)
+Not tested using nodes (minions) yet, except master as minion. (to be continued)

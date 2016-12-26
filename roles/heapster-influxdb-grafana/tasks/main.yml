@@ -1,0 +1,15 @@
+- name: Create temporary influxdb yaml dir
+  file: path=./influxdb state=directory
+
+- name: Copy yaml files on folder
+  copy:
+    src: ./
+    dest: ./influxdb/
+
+- name: Install heapster
+  shell: "kubectl create -f ./influxdb/  --validate=false"
+
+- name: Delete temp files
+  file:
+    state: absent
+    path: ./influxdb
