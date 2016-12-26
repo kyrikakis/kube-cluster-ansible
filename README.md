@@ -1,6 +1,6 @@
 # kube-cluster-ansible
 
-## Overview
+### Overview
 Kubernetes v1.5.1 cluster deployment **bundle** including the following:
 
 [heapster](https://github.com/kubernetes/heapster) [dashboard](https://github.com/kubernetes/dashboard) with basic authentication enabled, 
@@ -85,15 +85,27 @@ kube-system   monitoring-influxdb-1353739890-mhb88       1/1       Running   0  
 kube-system   weave-net-65xpt                            2/2       Running   0          27m
 ```
 
-Congratulations!!! Now you can login with your credencials in kubernetes-dashboard: [https://master_hostname:6443/ui](https://master_hostname:6443/ui)
+#### Kubernetes Dashboard
+
+Kubernetes dashboard *heapster* enabled, with event and live PM.  
+
+[https://172.28.128.159:6443/ui](https://172.28.128.159:6443/ui)
 
 ![dashboard](kubernetes-dash.png)
+
+#### Monitoring Grafana
+
+Grafana connected with influxdb for performance monitoring.
+
+[https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana](https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/monitoring-grafana)
+
+![dashboard](monitoring-grafana.png)
 
 #### NOTES: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
 * If you want to test it with vagrant just set in [inventory](./inventories/main.ini) `kubes_advertise_ip=172.28.128.159`, 
-as the vagrant's **private_network IP**`` the same for the host replacing `example.host`. Finally set `ansible_ssh_user=vagrant`
-Then start the virtaul box Vagrant machine and copy you public ssh key:
+as the vagrant's **private_network** ip, also replace `example.host` with `172.28.128.159`. Finally set `ansible_ssh_user=vagrant`.
+Finally start the virtual box Vagrant machine and copy you public ssh key:
 ```
 vagrant up
 ssh-copy-id vagrant@172.28.128.159
