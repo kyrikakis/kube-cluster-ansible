@@ -1,15 +1,16 @@
 # kube-cluster-ansible
 
 #### Table of Contents
+=======================
 
-[Overview](#overview)
-[Requrements](#requrements)
-[Installation](#installation)
-[Verification](#verification)
-- [Kubernetes Dashboard](#kubernetes-dashboard)
-- [Monitoring Grafana](#monitoring-grafana)
-- [Kibana Logging](#kibana-logging)
-[Notes](#notes)
+* [Overview](#overview)
+* [Requrements](#requrements)
+* [Installation](#installation)
+* [Verification](#verification)
+    * [Kubernetes Dashboard](#kubernetes-dashboard)
+    * [Monitoring Grafana](#monitoring-grafana)
+    * [Kibana Logging](#kibana-logging)
+* [Notes](#notes)
 
 ### Overview
 Kubernetes v1.5.1 cluster deployment **bundle** including the following:
@@ -31,6 +32,7 @@ credits:
 Ansible (tested on 2.1.2.0)
 
 ### Installation
+================
 
 Setup 1 vanilla machine with your chosen provider.
 
