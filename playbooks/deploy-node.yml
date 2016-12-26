@@ -1,0 +1,8 @@
+---
+- name: Deploy nodes
+  hosts: kubernetes-nodes
+  vars:
+     contents: "{{ lookup('file', 'master-token') }}"
+
+  roles:
+    - role: node
