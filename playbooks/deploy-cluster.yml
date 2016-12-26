@@ -1,0 +1,22 @@
+---
+
+- name: install Python where needs to be...
+  hosts: kubernetes-servers
+  gather_facts: False
+
+  tasks:
+  - name: Display all variables/facts known for a host
+    debug:
+      var: hostvars[inventory_hostname]
+
+  - name: install python 2
+    raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
+
+- name: Startup a vanilla Kubernetes 1.4 cluster
+  hosts: kubernetes-servers
+
+# Install kubernetes
+- include: deploy-kubernetes.yml
+
+# Install master
+- include: deploy-master.yml
