@@ -1,0 +1,7 @@
+use_proxy: false
+http_proxy: http://<your_proxy_ip>:<your_proxy_port>
+https_proxy: http://<your_proxy_ip>:<your_proxy_port>
+no_proxy: localhost,127.0.0.0/8,10.0.2.15/24,172.17.0.1/16,*.local,127.0.0.1,10.32.0.0/12,10.244.0.0/16
+
+#flannel, calico or weave
+network_provider: weave
