@@ -1,5 +1,16 @@
 # kube-cluster-ansible
 
+#### Table of Contents
+
+[Overview](#overview)
+[Requrements](#requrements)
+[Installation](#installation)
+[Verification](#verification)
+- [Kubernetes Dashboard](#kubernetes-dashboard)
+- [Monitoring Grafana](#monitoring-grafana)
+- [Kibana Logging](#kibana-logging)
+[Notes](#notes)
+
 ### Overview
 Kubernetes v1.5.1 cluster deployment **bundle** including the following:
 
@@ -107,7 +118,7 @@ Kibana connected with elastic-search for log searching.
 
 ![kibana](kibana-logging.png)
 
-#### NOTES: 
+#### Notes: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
 * If you want to test it with vagrant just set in [inventory](./inventories/main.ini) `kubes_advertise_ip=172.28.128.159`, 
 as the vagrant's **private_network** ip, also replace `example.host` with `172.28.128.159`. Finally set `ansible_ssh_user=vagrant`.
