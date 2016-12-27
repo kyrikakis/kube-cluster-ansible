@@ -1,0 +1,3 @@
+- name: Install dashboard
+  shell: "kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml  --validate=false"
+  when: inventory_hostname in groups['kubernetes-master']
