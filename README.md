@@ -69,9 +69,9 @@ kube-node-1          Ready     24m
 
 To check the pod network is running correctly, invoke:
 
-`kubectl get pods --all-namespaces`
+`watch -d kubectl get pods --all-namespaces`
 
-You should see:
+You should finally see:
 
 ```
 NAMESPACE     NAME                                       READY     STATUS    RESTARTS   AGE
@@ -121,7 +121,7 @@ Kibana connected with elastic-search for log searching.
 #### Notes: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
 * If you want to test it with vagrant just set in [inventory](./inventories/main.ini) `kubes_advertise_ip=172.28.128.159`, 
-as the vagrant's **private_network** ip, also replace `example.host` with `172.28.128.159`. Finally set `ansible_ssh_user=vagrant`.
+as the vagrant's **private_network** ip, also replace `example.host` with `172.28.128.159` and set `ansible_ssh_user=vagrant`.
 Finally start the virtual box Vagrant machine and copy you public ssh key:
 ```
 vagrant up
