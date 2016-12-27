@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 # Environmental variables
-PROXY = "<your_proxy>"
-PROXY_PORT = "<your_proxy_port>"
+PROXY = "10.144.1.10"
+PROXY_PORT = "8080"
 
 # Checking required vagrant plugins
 required_plugins =%w( vagrant-proxyconf vagrant-vbguest )
@@ -77,9 +77,9 @@ Vagrant.configure("2") do |config|
     # https://github.com/chef/bento/issues/688
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
 
-    #config.proxy.http     = "http://#{PROXY}:#{PROXY_PORT}/"
-    #config.proxy.https    = "https://#{PROXY}:#{PROXY_PORT}/"
-    #config.proxy.no_proxy = "172.28.128.159,localhost,127.0.0.0/8,10.0.2.15/24,172.17.0.1/16,*.local,127.0.0.1,10.32.0.0/12,10.244.0.0/16"
+    config.proxy.http     = "http://#{PROXY}:#{PROXY_PORT}/"
+    config.proxy.https    = "https://#{PROXY}:#{PROXY_PORT}/"
+    config.proxy.no_proxy = "172.28.128.159,localhost,127.0.0.0/8,10.0.2.15/24,172.17.0.1/16,*.local,127.0.0.1,10.32.0.0/12,10.244.0.0/16"
 
     config.vbguest.auto_update = false
   end
