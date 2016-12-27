@@ -74,6 +74,9 @@ Vagrant.configure("2") do |config|
     vb.cpus = "4"
     vb.memory = "4096"
 
+    # https://github.com/chef/bento/issues/688
+    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+
     #config.proxy.http     = "http://#{PROXY}:#{PROXY_PORT}/"
     #config.proxy.https    = "https://#{PROXY}:#{PROXY_PORT}/"
     #config.proxy.no_proxy = "172.28.128.159,localhost,127.0.0.0/8,10.0.2.15/24,172.17.0.1/16,*.local,127.0.0.1,10.32.0.0/12,10.244.0.0/16"
