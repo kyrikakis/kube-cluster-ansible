@@ -1,10 +1,4 @@
 ---
-- name: Add http-proxy settings file
-  template:
-    src: proxyset.sh.j2
-    dest: /etc/profile.d/proxyset.sh
-    mode: 0755
-  when: use_proxy == true
 
 - name: Add Docker repository Centos
   copy:

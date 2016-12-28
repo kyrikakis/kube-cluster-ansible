@@ -38,7 +38,7 @@ Setup 1 vanilla machine with your chosen provider.
 
 * If you are on CentOS is required to disable SELinux by running `setenforce 0`  You have to do this until kubelet can handle SELinux better.
 
-* In your [inventory](./inventories/main.ini) fill the Hostname, username and the public IP address.
+* In the [inventory](./inventories/main.ini) file fill the Hostname, username. If the machine has not a valid hostname set `kubes_advertise_ip` with the machine IP.
 
 * Set usernames and passwords [here](./roles/master/files/passwords.csv) for kubernetes-proxy https-service authentication (future provision for internal Oauth2 provider).
 
@@ -49,7 +49,11 @@ Now you can provision your K8s cluster running on the project root:
 
 `ansible-playbook playbooks/deploy-cluster.yml`
 
-*For testing the solution on a local Vagrant go [here](#notes).
+*For testing the solution on a local Vagrant just run:
+```
+vagrant up
+```
+**NOTE: local Vagrant machine needs 4096 MB available RAM**
 
 ### Verification
 
@@ -96,9 +100,9 @@ kube-system   weave-net-65xpt                            2/2       Running   0  
 
 #### Kubernetes Dashboard
 
-Kubernetes dashboard *heapster* enabled, with event and live PM.  
+Kubernetes dashboard *heapster* enabled, with event and live PM. In the prob asking for username/password enter one from [here](./roles/master/files/passwords.csv)
 
-[https://172.28.128.159:6443/ui](https://172.28.128.159:6443/ui)
+[https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/deployment?namespace=_all](https://172.28.128.159:6443/api/v1/proxy/namespaces/kube-system/services/kubernetes-dashboard/#/deployment?namespace=_all)
 
 ![dashboard](kubernetes-dash.png)
 
@@ -120,14 +124,4 @@ Kibana connected with elastic-search for log searching.
 
 #### Notes: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
-* If you want to test it with vagrant just set in [inventory](./inventories/main.ini) `kubes_advertise_ip=172.28.128.159`, 
-as the vagrant's **private_network** ip, also replace `example.host` with `172.28.128.159` and set `ansible_ssh_user=vagrant`.
-Finally start the virtual box Vagrant machine and copy you public ssh key:
-```
-vagrant up
-ssh-copy-id vagrant@172.28.128.159
-```
-then run:
-```
-ansible-playbook playbooks/deploy-cluster.yml
-```
+* On a relative slow connection it will need about 20 minutes for downloading all docker images.

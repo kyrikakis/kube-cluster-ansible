@@ -1,19 +1,32 @@
 ---
 
-- name: install Python where needs to be...
+- name: Install python and proxy
   hosts: kubernetes-servers
+  become: true
   gather_facts: False
 
   tasks:
-  - name: Display all variables/facts known for a host
-    debug:
-      var: hostvars[inventory_hostname]
+
+  - name: Add http-proxy settings file
+    template:
+      src: proxyset.sh.j2
+      dest: /etc/profile.d/proxy.sh
+      mode: 0755
+    when: use_proxy == true
+
+  - name: Add environment file
+    template:
+      src: enviroment.j2
+      dest: /etc/environment
+      mode: 0755
+    when: use_proxy == true
 
   - name: install python 2
     raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
 
-- name: Startup a vanilla Kubernetes 1.4 cluster
-  hosts: kubernetes-servers
+  - name: Display all variables/facts known for a host
+    debug:
+      var: hostvars[inventory_hostname]
 
 # Install kubernetes
 - include: deploy-kubernetes.yml

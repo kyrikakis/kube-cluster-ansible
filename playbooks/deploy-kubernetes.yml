@@ -1,6 +1,7 @@
 ---
 - name: Startup a vanilla Kubernetes 1.4 cluster
   hosts: kubernetes-servers
+  become: true
 
   roles:
     - role: docker

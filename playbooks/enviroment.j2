@@ -1,0 +1,12 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+http_proxy={{ http_proxy }}
+https_proxy={{ https_proxy }}
+no_proxy={{ inventory_hostname }},{{ no_proxy }}
+
+HTTP_PROXY={{ http_proxy }}
+HTTPS_PROXY={{ https_proxy }}
+NO_PROXY={{ inventory_hostname }},{{ no_proxy }}
+
+KUBERNETES_HTTP_PROXY={{ http_proxy }}
+KUBERNETES_HTTPS_PROXY={{ https_proxy }}
+KUBERNETES_NO_PROXY={{ inventory_hostname }},{{ no_proxy }}
