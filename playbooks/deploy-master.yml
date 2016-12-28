@@ -1,6 +1,7 @@
 ---
 - name: Deploy master
   hosts: kubernetes-master
+  become: true
 
   roles:
     - role: master
