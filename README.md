@@ -2,14 +2,14 @@
 
 #### Table of Contents
 
-* [Overview](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#overview)
-* [Requrements](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#requrements)
-* [Installation](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#installation)
-* [Verification](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#verification)
-    * [Kubernetes Dashboard](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#kubernetes-dashboard)
-    * [Monitoring Grafana](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#monitoring-grafana)
-    * [Kibana Logging](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#kibana-logging)
-* [Notes](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#notes)
+* [Overview](#overview)
+* [Requrements](#requrements)
+* [Installation](#installation)
+* [Verification](#verification)
+    * [Kubernetes Dashboard](#kubernetes-dashboard)
+    * [Monitoring Grafana](#monitoring-grafana)
+    * [Kibana Logging](#kibana-logging)
+* [Notes](#notes)
 
 ### Overview
 Kubernetes v1.5.1 cluster deployment **bundle** including the following:
