@@ -2,14 +2,14 @@
 
 #### Table of Contents
 
-* [Overview](#overview)
-* [Requrements](#requrements)
-* [Installation](#installation)
-* [Verification](#verification)
-    * [Kubernetes Dashboard](#kubernetes-dashboard)
-    * [Monitoring Grafana](#monitoring-grafana)
-    * [Kibana Logging](#kibana-logging)
-* [Notes](#notes)
+* [Overview](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#overview)
+* [Requrements](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#requrements)
+* [Installation](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#installation)
+* [Verification](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#verification)
+    * [Kubernetes Dashboard](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#kubernetes-dashboard)
+    * [Monitoring Grafana](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#monitoring-grafana)
+    * [Kibana Logging](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#kibana-logging)
+* [Notes](https://github.com/kirixxx/kube-cluster-ansible/edit/master/README.md#notes)
 
 ### Overview
 Kubernetes v1.5.1 cluster deployment **bundle** including the following:
@@ -56,9 +56,6 @@ vagrant up
 **NOTE: local Vagrant machine needs 4096 MB available RAM**
 
 ### Verification
-
-* If you want to access k8s cluster securely copy the `/etc/kubernetes/kubelet.conf` file from master node to `~/.kube/config` 
-on your local machine (of course you need to install `kubectl` locally), then you can access your cluster with `kubectl proxy`
 
 To check if everything has provisioned correctly, on your master node, invoke:
 
@@ -125,3 +122,5 @@ Kibana connected with elastic-search for log searching.
 #### Notes: 
 * Not tested using nodes (minions) yet, except master as minion. (to be continued)
 * On a relative slow connection it will need about 20 minutes for downloading all docker images.
+* If you want to access k8s cluster securely copy the `/etc/kubernetes/kubelet.conf` file from master node to `~/.kube/config` 
+on your local machine (of course you need to install `kubectl` locally), then you can access your cluster with `kubectl proxy`
