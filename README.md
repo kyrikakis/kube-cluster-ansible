@@ -17,7 +17,7 @@ Kubernetes v1.5.1 cluster deployment **bundle** including the following:
 [heapster](https://github.com/kubernetes/heapster) [dashboard](https://github.com/kubernetes/dashboard) with basic authentication enabled, 
 [influxdb](https://www.influxdata.com/) and [grafana](http://grafana.org/) for monitoring events and 
 [fluentd](http://www.fluentd.org/) - [elasticsearch](https://www.elastic.co/) - [kibana](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch)
-for cluster log management. 
+for cluster log management 
 
 tested on CentOS 7 and Ubuntu16.04 behind http-proxy.
 
